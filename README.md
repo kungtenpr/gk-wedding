@@ -20,7 +20,7 @@ Open http://localhost:5173
 5. Schedule (07.09 พิธีสงฆ์ · 08.09 แห่ขันหมาก · 10.39 ผูกข้อมือ · 11.30 รับประทานอาหาร) + add-to-calendar
 6. Dress code — Navy / Sky / Cocoa / Ivory
 7. Venue — QR from the card (`q.me-qr.com/xzmaoeii`), Google Maps embed
-8. Gallery carousel (8 photos, 2:3 portrait, scroll-snap; 1 per view on mobile, 3 on desktop) + lightbox (`CONFIG.photos` in `script.js`)
+8. Gallery carousel (9 photos, 2:3 portrait, scroll-snap; 1 per view on mobile, 3 on desktop paging 1–3 / 4–6 / 7–9) + lightbox (`CONFIG.photos` in `script.js`)
 9. RSVP form
 10. Wedding gift (PromptPay — placeholder)
 11. Thank you / #GKWEDDING
@@ -28,7 +28,7 @@ Open http://localhost:5173
 ## Files
 
 - `index.html`, `style.css`, `script.js`
-- `images/photo-01..08.jpg` (09–12 unused) — random picks from `~/Pictures/Export/wedding-gift-kungten`, resized to 1600px (placeholders until final selection)
+- `images/photo-01..09.jpg` (10–12 unused) — random picks from `~/Pictures/Export/wedding-gift-kungten`, resized to 1600px (placeholders until final selection)
 - `images/deco/peony-lg.png`, `peony-sm.png`, `qr-venue.png` — extracted from the card PDF
 
 ## Checklist (อัปเดต 2026-11-16)
@@ -48,7 +48,7 @@ Open http://localhost:5173
 - [x] Monogram G & K และตราปิดซอง ดึง vector จาก PDF (`images/deco/monogram.svg`, `monogram-white.svg`)
 
 ### รอข้อมูล ⏳
-- [ ] **รูป gallery 8 รูป (แนวตั้ง 2:3)** — ตอนนี้เป็นรูปสุ่ม `photo-01..08`
+- [ ] **รูป gallery 9 รูป (แนวตั้ง 2:3)** — ตอนนี้เป็นรูปสุ่ม `photo-01..09`
 - [ ] **ชื่อภาษาอังกฤษบ่าวสาว** — ตอนนี้ `Worawee & Pawornrut` (เดา)
 - [ ] **ของขวัญ**: QR PromptPay + ชื่อบัญชี + เลขพร้อมเพย์/เลขบัญชี
 - [ ] **วันปิดรับ RSVP** — ตอนนี้ 20 ก.พ. 2570 (ชั่วคราว)

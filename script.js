@@ -9,7 +9,7 @@ const CONFIG = {
   // Background music: drop an mp3 at this path. If the file is missing, the music button stays hidden.
   music: 'audio/bgm.mp3',
   musicVolume: 0.25,
-  photos: Array.from({ length: 8 }, (_, i) => `images/photo-${String(i + 1).padStart(2, '0')}.jpg`),
+  photos: Array.from({ length: 9 }, (_, i) => `images/photo-${String(i + 1).padStart(2, '0')}.jpg`),
 };
 
 // ===== Background music =====
@@ -131,10 +131,11 @@ function currentIndex() {
   });
   return best;
 }
+const perView = () => centered() ? 1 : Math.max(1, Math.round(grid.clientWidth / (slides[0].offsetWidth + 18)));
 function updateCarousel() {
   const i = currentIndex();
   // Desktop shows several slides at once: highlight the whole visible range.
-  const per = centered() ? 1 : Math.max(1, Math.round(grid.clientWidth / (slides[0].offsetWidth + 18)));
+  const per = perView();
   const last = Math.min(i + per, slides.length) - 1;
   dots.forEach((d, j) => d.classList.toggle('on', j >= i && j <= last));
   countEl.textContent = `${last > i ? `${i + 1}–${last + 1}` : i + 1} / ${slides.length}`;
@@ -143,8 +144,9 @@ function updateCarousel() {
 }
 grid.addEventListener('scroll', () => requestAnimationFrame(updateCarousel), { passive: true });
 window.addEventListener('resize', updateCarousel);
-prevBtn.addEventListener('click', () => goTo(currentIndex() - 1));
-nextBtn.addEventListener('click', () => goTo(currentIndex() + 1));
+// Arrows page by a full view (3 on desktop → 1–3, 4–6, 7–9).
+prevBtn.addEventListener('click', () => goTo(currentIndex() - perView()));
+nextBtn.addEventListener('click', () => goTo(currentIndex() + perView()));
 grid.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight') { e.preventDefault(); goTo(currentIndex() + 1); }
   if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(currentIndex() - 1); }
