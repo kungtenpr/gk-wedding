@@ -139,21 +139,47 @@ function updateCarousel() {
   const last = Math.min(i + per, slides.length) - 1;
   dots.forEach((d, j) => d.classList.toggle('on', j >= i && j <= last));
   countEl.textContent = `${last > i ? `${i + 1}–${last + 1}` : i + 1} / ${slides.length}`;
-  prevBtn.disabled = grid.scrollLeft <= 2;
-  nextBtn.disabled = grid.scrollLeft >= grid.scrollWidth - grid.clientWidth - 2;
+}
+const atStart = () => grid.scrollLeft <= 2;
+const atEnd = () => grid.scrollLeft >= grid.scrollWidth - grid.clientWidth - 2;
+// Step forward/back by n slides, wrapping last → first and first → last.
+function carStep(n) {
+  if (n > 0 && atEnd()) grid.scrollTo({ left: 0, behavior: 'smooth' });
+  else if (n < 0 && atStart()) grid.scrollTo({ left: grid.scrollWidth, behavior: 'smooth' });
+  else goTo(currentIndex() + n);
 }
 grid.addEventListener('scroll', () => requestAnimationFrame(updateCarousel), { passive: true });
 window.addEventListener('resize', updateCarousel);
 // Arrows page by a full view (3 on desktop → 1–3, 4–6, 7–9).
-prevBtn.addEventListener('click', () => goTo(currentIndex() - perView()));
-nextBtn.addEventListener('click', () => goTo(currentIndex() + perView()));
+prevBtn.addEventListener('click', () => carStep(-perView()));
+nextBtn.addEventListener('click', () => carStep(perView()));
 grid.addEventListener('keydown', e => {
-  if (e.key === 'ArrowRight') { e.preventDefault(); goTo(currentIndex() + 1); }
-  if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(currentIndex() - 1); }
+  if (e.key === 'ArrowRight') { e.preventDefault(); carStep(1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); carStep(-1); }
 });
 updateCarousel();
 
-const lb = document.getElementById('lightbox');
+// Autoplay: one view every 4.5 s, loops, runs only while on screen.
+// Stops for good once the guest touches, swipes, hovers or uses the controls.
+const AUTOPLAY_MS = 4500;
+const carouselEl = document.querySelector('.carousel');
+let autoplayOn = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+let carouselVisible = false, hovering = false;
+function stopAutoplay() { autoplayOn = false; }
+['pointerdown', 'focusin'].forEach(t => carouselEl.addEventListener(t, stopAutoplay, { passive: true }));
+// Only a sideways trackpad swipe counts; page scrolling with the wheel over the photos does not.
+carouselEl.addEventListener('wheel', e => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) stopAutoplay(); }, { passive: true });
+// Mouse over the photos only pauses (the page scrolling under a still cursor also fires this).
+carouselEl.addEventListener('mouseenter', () => { hovering = true; });
+carouselEl.addEventListener('mouseleave', () => { hovering = false; });
+dotsEl.addEventListener('click', stopAutoplay);
+new IntersectionObserver(([en]) => { carouselVisible = en.isIntersecting; }, { threshold: 0.6 }).observe(carouselEl);
+setInterval(() => {
+  if (!autoplayOn || hovering || !carouselVisible || document.hidden || !lb.hidden) return;
+  carStep(perView());
+}, AUTOPLAY_MS);
+
+const lb =document.getElementById('lightbox');
 const lbImg = lb.querySelector('img');
 let lbIdx = 0;
 function openLb(i) { lbIdx = i; goTo(i); lbImg.src = CONFIG.photos[i]; lb.hidden = false; document.body.style.overflow = 'hidden'; }

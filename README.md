@@ -20,7 +20,7 @@ Open http://localhost:5173
 5. Schedule (07.09 พิธีสงฆ์ · 08.09 แห่ขันหมาก · 10.39 ผูกข้อมือ · 11.30 รับประทานอาหาร) + add-to-calendar
 6. Dress code — Navy / Sky / Cocoa / Ivory
 7. Venue — QR from the card (`q.me-qr.com/xzmaoeii`), Google Maps embed
-8. Gallery carousel (9 photos, 2:3 portrait, scroll-snap; 1 per view on mobile, 3 on desktop paging 1–3 / 4–6 / 7–9) + lightbox (`CONFIG.photos` in `script.js`)
+8. Gallery carousel (9 photos, 2:3 portrait, scroll-snap; 1 per view on mobile, 3 on desktop paging 1–3 / 4–6 / 7–9; arrows wrap around; autoplay every 4.5 s while on screen, pauses on hover, stops for good on touch/swipe/click, off with reduced motion) + lightbox (`CONFIG.photos` in `script.js`)
 9. RSVP form
 10. Wedding gift (PromptPay — placeholder)
 11. Thank you / #GKWEDDING
