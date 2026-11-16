@@ -9,7 +9,7 @@ const CONFIG = {
   // Background music: drop an mp3 at this path. If the file is missing, the music button stays hidden.
   music: 'audio/bgm.mp3',
   musicVolume: 0.25,
-  photos: Array.from({ length: 12 }, (_, i) => `images/photo-${String(i + 1).padStart(2, '0')}.jpg`),
+  photos: Array.from({ length: 8 }, (_, i) => `images/photo-${String(i + 1).padStart(2, '0')}.jpg`),
 };
 
 // ===== Background music =====
@@ -98,19 +98,63 @@ const ics = [
 ].join('\r\n');
 document.getElementById('icsBtn').href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
 
-// ===== Gallery + lightbox =====
+// ===== Gallery carousel + lightbox =====
 const grid = document.getElementById('grid');
-CONFIG.photos.forEach((src, i) => {
+const dotsEl = document.getElementById('carDots');
+const countEl = document.getElementById('carCount');
+const prevBtn = document.querySelector('.car-btn.prev');
+const nextBtn = document.querySelector('.car-btn.next');
+const slides = CONFIG.photos.map((src, i) => {
   const f = document.createElement('figure');
-  f.className = 'reveal';
-  f.innerHTML = `<img src="${src}" alt="" loading="lazy">`;
+  f.innerHTML = `<img src="${src}" alt="รูปที่ ${i + 1}" loading="lazy" draggable="false">`;
   f.addEventListener('click', () => openLb(i));
   grid.appendChild(f);
+  const d = document.createElement('button');
+  d.type = 'button'; d.setAttribute('aria-label', `ไปที่รูปที่ ${i + 1}`);
+  d.addEventListener('click', () => goTo(i));
+  dotsEl.appendChild(d);
+  return f;
 });
+const dots = [...dotsEl.children];
+const centered = () => getComputedStyle(slides[0]).scrollSnapAlign.includes('center');
+function goTo(i) {
+  const f = slides[Math.max(0, Math.min(i, slides.length - 1))];
+  const left = centered() ? f.offsetLeft - (grid.clientWidth - f.offsetWidth) / 2 : f.offsetLeft;
+  grid.scrollTo({ left, behavior: 'smooth' });
+}
+function currentIndex() {
+  const ref = centered() ? grid.scrollLeft + grid.clientWidth / 2 : grid.scrollLeft;
+  let best = 0, bestD = Infinity;
+  slides.forEach((f, i) => {
+    const p = centered() ? f.offsetLeft + f.offsetWidth / 2 : f.offsetLeft;
+    const d = Math.abs(p - ref); if (d < bestD) { bestD = d; best = i; }
+  });
+  return best;
+}
+function updateCarousel() {
+  const i = currentIndex();
+  // Desktop shows several slides at once: highlight the whole visible range.
+  const per = centered() ? 1 : Math.max(1, Math.round(grid.clientWidth / (slides[0].offsetWidth + 18)));
+  const last = Math.min(i + per, slides.length) - 1;
+  dots.forEach((d, j) => d.classList.toggle('on', j >= i && j <= last));
+  countEl.textContent = `${last > i ? `${i + 1}–${last + 1}` : i + 1} / ${slides.length}`;
+  prevBtn.disabled = grid.scrollLeft <= 2;
+  nextBtn.disabled = grid.scrollLeft >= grid.scrollWidth - grid.clientWidth - 2;
+}
+grid.addEventListener('scroll', () => requestAnimationFrame(updateCarousel), { passive: true });
+window.addEventListener('resize', updateCarousel);
+prevBtn.addEventListener('click', () => goTo(currentIndex() - 1));
+nextBtn.addEventListener('click', () => goTo(currentIndex() + 1));
+grid.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') { e.preventDefault(); goTo(currentIndex() + 1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(currentIndex() - 1); }
+});
+updateCarousel();
+
 const lb = document.getElementById('lightbox');
 const lbImg = lb.querySelector('img');
 let lbIdx = 0;
-function openLb(i) { lbIdx = i; lbImg.src = CONFIG.photos[i]; lb.hidden = false; document.body.style.overflow = 'hidden'; }
+function openLb(i) { lbIdx = i; goTo(i); lbImg.src = CONFIG.photos[i]; lb.hidden = false; document.body.style.overflow = 'hidden'; }
 function closeLb() { lb.hidden = true; document.body.style.overflow = ''; }
 function step(n) { openLb((lbIdx + n + CONFIG.photos.length) % CONFIG.photos.length); }
 lb.querySelector('.lb-close').onclick = closeLb;

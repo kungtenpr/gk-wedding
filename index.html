@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&family=Kanit:wght@200;300;400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body class="locked">
 
@@ -173,7 +173,15 @@
           <p class="eyebrow">Our Moments</p>
           <h2>A Few More Frames</h2>
         </header>
-        <div class="grid" id="grid"></div>
+        <div class="carousel reveal">
+          <div class="track" id="grid" tabindex="0" aria-label="แกลเลอรีรูป ปัดซ้ายขวาเพื่อดูรูปถัดไป"></div>
+          <button class="car-btn prev" type="button" aria-label="รูปก่อนหน้า"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button class="car-btn next" type="button" aria-label="รูปถัดไป"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+        <div class="car-meta">
+          <div class="car-dots" id="carDots"></div>
+          <span class="car-count" id="carCount" aria-live="polite">1 / 8</span>
+        </div>
       </div>
     </section>
 
@@ -274,6 +282,6 @@
     <a href="#gift">ของขวัญ</a>
   </nav>
 
-  <script src="script.js?v=3"></script>
+  <script src="script.js?v=4"></script>
 </body>
 </html>

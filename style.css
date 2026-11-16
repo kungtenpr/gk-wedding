@@ -247,12 +247,48 @@ section { position: relative; padding-block: var(--sec); overflow: hidden; }
 @media (min-width: 900px) { .venue-grid { grid-template-columns: 380px 1fr; } }
 
 /* ===== Gallery ===== */
-.grid { columns: 2; column-gap: 12px; }
-.grid figure { margin: 0 0 12px; break-inside: avoid; overflow: hidden; cursor: zoom-in; position: relative; }
-.grid img { width: 100%; transition: transform 1.2s var(--ease), filter .6s; }
-.grid figure:hover img { transform: scale(1.04); }
-@media (min-width: 720px) { .grid { columns: 3; column-gap: 16px; } .grid figure { margin-bottom: 16px; } }
-@media (min-width: 1100px) { .grid { columns: 4; } }
+/* Carousel: native scroll-snap, all photos 2:3 portrait */
+.carousel { position: relative; }
+.track {
+  --gap: 14px; --slide: 78%;
+  display: flex; gap: var(--gap); overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none;
+  padding-inline: calc((100% - var(--slide)) / 2); outline: none;
+}
+.track::-webkit-scrollbar { display: none; }
+.track figure {
+  flex: 0 0 var(--slide); margin: 0; aspect-ratio: 2 / 3; overflow: hidden;
+  scroll-snap-align: center; cursor: zoom-in; background: var(--mist);
+  box-shadow: 0 24px 40px -28px rgba(7,31,74,.45);
+}
+.track img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.track figure:hover img { transform: scale(1.04); }
+.car-btn {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+  width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line);
+  background: rgba(255,255,255,.88); backdrop-filter: blur(6px); color: var(--navy);
+  display: none; place-items: center; cursor: pointer; transition: opacity .3s, background .3s;
+}
+.car-btn:hover { background: #fff; }
+.car-btn:disabled { opacity: 0; pointer-events: none; }
+.car-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.car-btn.prev { left: -8px; } .car-btn.next { right: -8px; }
+.car-meta { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 22px; }
+.car-dots { display: flex; gap: 8px; }
+.car-dots button {
+  width: 7px; height: 7px; padding: 0; border-radius: 99px; border: 0; cursor: pointer;
+  background: var(--line); transition: width .4s var(--ease), background .4s;
+}
+.car-dots button.on { width: 22px; background: var(--navy); }
+@media (min-width: 720px) { .car-dots button.on { width: 12px; } }
+.car-count { font-family: var(--serif); font-size: .95em; letter-spacing: .2em; color: var(--navy-soft); font-variant-numeric: lining-nums; }
+@media (min-width: 720px) {
+  .track { --gap: 18px; --slide: calc((100% - 2 * var(--gap)) / 3); padding-inline: 0; }
+  .track figure { scroll-snap-align: start; }
+  .car-btn { display: grid; }
+  .car-btn.prev { left: -23px; } .car-btn.next { right: -23px; }
+}
+@media (min-width: 1100px) { .car-btn.prev { left: -60px; } .car-btn.next { right: -60px; } }
 
 .lightbox { position: fixed; inset: 0; z-index: 200; background: rgba(7,20,46,.94); display: grid; place-items: center; padding: 24px; }
 .lightbox[hidden] { display: none; }
