@@ -133,16 +133,10 @@ section { position: relative; padding-block: var(--sec); overflow: hidden; }
   left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none;
 }
 .hero-text { text-align: center; position: relative; z-index: 1; }
+/* Vector G, K and & taken straight from the card PDF (same glyphs, positions and overlap). */
 .monogram {
-  position: relative; display: inline-block; color: var(--navy);
-  font-family: var(--serif); font-weight: 500; line-height: .8;
-  font-size: clamp(130px, 28vw, 230px); margin: .18em 0 .15em; padding-left: .18em;
-}
-.monogram .m-g { display: inline-block; }
-.monogram .m-k { display: inline-block; margin-left: -.24em; transform: translateY(.14em); }
-.monogram .m-amp {
-  position: absolute; left: -.14em; bottom: -.02em;
-  font-family: var(--script); font-weight: 400; font-size: .5em; color: var(--navy);
+  display: block; width: clamp(150px, 32vw, 250px); height: auto;
+  margin: 18px auto 6px;
 }
 .date-line { font-family: var(--serif); font-size: clamp(22px, 3.4vw, 32px); letter-spacing: .32em; margin-top: 18px; padding-left: .32em; }
 .venue-line { letter-spacing: .1em; margin-top: 8px; color: var(--navy-soft); }
