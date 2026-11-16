@@ -44,9 +44,11 @@ Open http://localhost:5173
 - [x] เพลงพื้นหลัง A Thousand Years ที่ 25% (`audio/bgm.mp3`)
 - [x] วิธีเก็บ RSVP: Google Sheets + Apps Script — ตัดสินใจแล้ว
 - [x] Responsive มือถือ + คอม
+- [x] รูปหน้าแรก `images/hero.jpg` (kungten46) · รูปคั่นเต็มจอ `images/band.jpg` (kungten269)
+- [x] Monogram G & K และตราปิดซอง ดึง vector จาก PDF (`images/deco/monogram.svg`, `monogram-white.svg`)
 
 ### รอข้อมูล ⏳
-- [ ] **รูปที่คัดแล้ว**: รูปหน้าแรก (แนวตั้ง) · รูปคั่นเต็มจอ (แนวตั้ง) · gallery 8–12 รูป — ตอนนี้เป็นรูปสุ่ม
+- [ ] **รูป gallery 8–12 รูป** — ตอนนี้เป็นรูปสุ่ม
 - [ ] **ชื่อภาษาอังกฤษบ่าวสาว** — ตอนนี้ `Worawee & Pawornrut` (เดา)
 - [ ] **ของขวัญ**: QR PromptPay + ชื่อบัญชี + เลขพร้อมเพย์/เลขบัญชี
 - [ ] **วันปิดรับ RSVP** — ตอนนี้ 20 ก.พ. 2570 (ชั่วคราว)
@@ -55,7 +57,7 @@ Open http://localhost:5173
 ### ไม่บังคับ
 - [ ] รูปเดี่ยวเจ้าบ่าว / เจ้าสาว (section แนะนำตัวแยก)
 - [ ] ข้อมูลที่จอดรถ / ทางเข้า / เบอร์ผู้ประสานงาน
-- [ ] รูปพรีวิวตอนแชร์ลิงก์ใน LINE (ตอนนี้ใช้ `photo-04.jpg`)
+- [ ] รูปพรีวิวตอนแชร์ลิงก์ใน LINE (ตอนนี้ใช้ `hero.jpg`)
 
 ### ขึ้นจริง
 - [x] Deploy GitHub Pages — https://kungtenpr.github.io/gk-wedding/ (repo `kungtenpr/gk-wedding`, public, Pages from `main` /)
