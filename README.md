@@ -41,7 +41,7 @@ Open http://localhost:5173
 - [x] เวลาเลิกงานในปุ่มเพิ่มลงปฏิทิน 07.09–14.00 น. — ยืนยันแล้ว
 - [x] ข้อความที่แต่งไว้ (คำคมบนรูป, dress code, ขอบคุณ, ของขวัญ) — ใช้ตามนี้ไปก่อน
 - [x] ชื่อโทนสี dress code Navy / Sky / Cocoa / Ivory — ยืนยันแล้ว
-- [x] เพลงพื้นหลัง A Thousand Years ที่ 25% (`audio/bgm.mp3`)
+- [x] เพลงพื้นหลัง A Thousand Years → Perfect วนสลับ ที่ 25% (`audio/bgm.mp3`, `audio/bgm-2.mp3`)
 - [x] วิธีเก็บ RSVP: Google Sheets + Apps Script — ตัดสินใจแล้ว
 - [x] Responsive มือถือ + คอม
 - [x] รูปหน้าแรก `images/hero.jpg` (kungten46) · รูปคั่นเต็มจอ `images/band.jpg` (kungten269)
@@ -74,10 +74,14 @@ git push                          # Pages rebuilds automatically in ~1 min
 
 ## Music
 
-`audio/bgm.mp3`: *A Thousand Years* — Christina Perri, from the owners' own file (`~/Downloads/Christina Perri - A Thousand Years .mp3`).
-Changes: trimmed 1.1 s → 268.7 s, loudness normalised, 1.5 s fade-in / 3 s fade-out, 96 kbps MP3 (~3.2 MB).
+Playlist in `CONFIG.music` (`script.js`): plays in order, then starts over (no `loop` on `<audio>`). A missing file is skipped.
 
-⚠️ Copyrighted song, no licence — chosen knowingly (2026-11-16). If a takedown notice comes, delete `audio/bgm.mp3` (the music button hides itself) or swap in a free recording.
+1. `audio/bgm.mp3`: *A Thousand Years* — Christina Perri, from the owners' own file (`~/Downloads/Christina Perri - A Thousand Years .mp3`).
+   Changes: trimmed 1.1 s → 268.7 s, loudness normalised, 1.5 s fade-in / 3 s fade-out, 96 kbps MP3 (~3.2 MB).
+2. `audio/bgm-2.mp3`: *Perfect* — Ed Sheeran, from the owners' own file (`~/Downloads/Ed Sheeran - Perfect .mp3`, added 2026-11-17).
+   Changes: trimmed 1.75 s → 274.5 s (drops the silent gap and hidden tail), −1.7 dB to match track 1 (~−19 LUFS), 1.5 s fade-in / 3 s fade-out, 96 kbps MP3 (~3.3 MB).
+
+⚠️ Both are copyrighted songs, no licence — chosen knowingly (2026-11-16, 2026-11-17). If a takedown notice comes, delete the files and empty `CONFIG.music` (the music button hides itself) or swap in a free recording.
 Free fallback already vetted: *Gymnopédie No.1* by Daria Baiocchi, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Satie_Gymnop%C3%A8die_n.1_DariaBaiocchi.wav), CC BY-SA 4.0 (needs a credit line in the footer).
 
 ## RSVP storage (production)

@@ -6,8 +6,8 @@ const CONFIG = {
   location: 'หอประชุมสัตตบงกช โรงเรียนอนุบาลไพศาลี',
   // Set to a Google Apps Script Web App URL to collect RSVPs in Google Sheets.
   rsvpEndpoint: '',
-  // Background music: drop an mp3 at this path. If the file is missing, the music button stays hidden.
-  music: 'audio/bgm.mp3',
+  // Background music playlist: plays in order, then starts over. If a file is missing, it is skipped.
+  music: ['audio/bgm.mp3', 'audio/bgm-2.mp3'],
   musicVolume: 0.25,
   photos: Array.from({ length: 9 }, (_, i) => `images/photo-${String(i + 1).padStart(2, '0')}.jpg`),
 };
@@ -31,9 +31,10 @@ function setPlayingUI(on) {
   musicBtn.classList.toggle('playing', on);
   musicBtn.setAttribute('aria-pressed', String(on));
 }
+let track = 0;
 async function playMusic() {
-  if (!CONFIG.music) return;
-  if (!bgm.src) bgm.src = CONFIG.music;
+  if (!CONFIG.music.length) return;
+  if (!bgm.src) bgm.src = CONFIG.music[track];
   bgm.volume = 0;
   try {
     await bgm.play();
@@ -48,7 +49,20 @@ async function playMusic() {
   }
 }
 function pauseMusic() { fadeTo(0, 600, () => bgm.pause()); setPlayingUI(false); }
-bgm.addEventListener('error', () => { musicBtn.hidden = true; });
+// When a song ends, start the next one (A Thousand Years → Perfect → A Thousand Years …).
+function nextTrack() {
+  track = (track + 1) % CONFIG.music.length;
+  bgm.src = CONFIG.music[track];
+  bgm.play().catch(() => {});
+}
+bgm.addEventListener('ended', nextTrack);
+let badTracks = 0;
+bgm.addEventListener('error', () => {
+  // Skip a missing file; hide the button only if every track fails.
+  if (++badTracks >= CONFIG.music.length) { musicBtn.hidden = true; return; }
+  if (!userPaused) nextTrack();
+});
+bgm.addEventListener('playing', () => { badTracks = 0; });
 musicBtn.addEventListener('click', () => {
   if (bgm.paused || musicBtn.getAttribute('aria-pressed') === 'false') { userPaused = false; playMusic(); }
   else { userPaused = true; pauseMusic(); }
