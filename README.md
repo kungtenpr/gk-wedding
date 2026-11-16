@@ -58,7 +58,17 @@ Open http://localhost:5173
 - [ ] รูปพรีวิวตอนแชร์ลิงก์ใน LINE (ตอนนี้ใช้ `photo-04.jpg`)
 
 ### ขึ้นจริง
-- [ ] Deploy GitHub Pages
+- [x] Deploy GitHub Pages — https://kungtenpr.github.io/gk-wedding/ (repo `kungtenpr/gk-wedding`, public, Pages from `main` /)
+
+## Deploy
+
+GitHub account: **kungtenpr** (not Kungten). Commit identity is set locally in this repo
+(`kungtenpr <297358441+kungtenpr@users.noreply.github.com>`).
+
+```bash
+gh auth switch --user kungtenpr   # if gh is on the other account
+git push                          # Pages rebuilds automatically in ~1 min
+```
 
 ## Music
 
