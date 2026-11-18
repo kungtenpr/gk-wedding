@@ -46,7 +46,7 @@ Open http://localhost:5173
 - [x] Responsive มือถือ + คอม
 - [x] รูปหน้าแรก `images/hero.jpg` (kungten46) · รูปคั่นเต็มจอ `images/band.jpg` (kungten269)
 - [x] Monogram G & K และตราปิดซอง ดึง vector จาก PDF (`images/deco/monogram.svg`, `monogram-white.svg`)
-- [x] รูปพรีวิวตอนแชร์ลิงก์ `images/og-image.jpg` 1200×630 (ครึ่งซ้ายจากการ์ด PDF + รูปหน้าแรก) · og tags ใช้ URL เต็ม
+- [x] รูปพรีวิวตอนแชร์ลิงก์ `images/og-image.jpg` 1200×630 (ครึ่งซ้ายจากการ์ด PDF + รูปหน้าแรก) · og tags ใช้ URL เต็ม ไม่มี `?v=` — เปลี่ยนรูปแค่ทับไฟล์เดิมแล้ว push
 - [x] ไอคอนเว็บ = ตรา GK สีกรมท่า (`icon.svg`, `icon-32.png`, `apple-touch-icon.png` 180px; source `images/deco/icon-square.svg`)
 
 ### รอข้อมูล ⏳
