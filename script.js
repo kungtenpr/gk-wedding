@@ -5,7 +5,7 @@ const CONFIG = {
   title: 'งานมงคลสมรส วรวี & ปวรรุศ (#GKWEDDING)',
   location: 'หอประชุมสัตตบงกช โรงเรียนอนุบาลไพศาลี',
   // Set to a Google Apps Script Web App URL to collect RSVPs in Google Sheets.
-  rsvpEndpoint: '',
+  rsvpEndpoint: 'https://script.google.com/macros/s/AKfycbw2tLpN1dVQpZnDKObn3HS2qOJosnoS7D_RH6otao4NiJxd4xO4siDD5iZMVcRJUoavxQ/exec',
   // Background music playlist: plays in order, then starts over. If a file is missing, it is skipped.
   music: ['audio/bgm.mp3', 'audio/bgm-2.mp3'],
   musicVolume: 0.25,

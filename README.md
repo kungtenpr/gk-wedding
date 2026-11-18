@@ -42,7 +42,7 @@ Open http://localhost:5173
 - [x] ข้อความที่แต่งไว้ (คำคมบนรูป, dress code, ขอบคุณ, ของขวัญ) — ใช้ตามนี้ไปก่อน
 - [x] ชื่อโทนสี dress code Navy / Sky / Cocoa / Ivory — ยืนยันแล้ว
 - [x] เพลงพื้นหลัง A Thousand Years → Perfect วนสลับ ที่ 25% (`audio/bgm.mp3`, `audio/bgm-2.mp3`)
-- [x] วิธีเก็บ RSVP: Google Sheets + Apps Script — ตัดสินใจแล้ว
+- [x] RSVP → Google Sheet "GK Wedding RSVP" ผ่าน Apps Script — deploy แล้ว 2026-11-19, URL อยู่ใน `CONFIG.rsvpEndpoint`, ทดสอบส่งจริงผ่าน
 - [x] Responsive มือถือ + คอม
 - [x] รูปหน้าแรก `images/hero.jpg` (kungten46) · รูปคั่นเต็มจอ `images/band.jpg` (kungten269)
 - [x] Monogram G & K และตราปิดซอง ดึง vector จาก PDF (`images/deco/monogram.svg`, `monogram-white.svg`)
@@ -52,7 +52,6 @@ Open http://localhost:5173
 - [ ] **ชื่อภาษาอังกฤษบ่าวสาว** — ตอนนี้ `Worawee & Pawornrut` (เดา)
 - [ ] **ของขวัญ**: QR PromptPay + ชื่อบัญชี + เลขพร้อมเพย์/เลขบัญชี
 - [ ] **วันปิดรับ RSVP** — ตอนนี้ 20 ก.พ. 2570 (ชั่วคราว)
-- [ ] **RSVP endpoint**: Apps Script เขียนแล้ว (`apps-script/`) → เจ้าของ deploy ตาม `apps-script/README.md` → ส่ง URL `/exec` มาใส่ใน `CONFIG.rsvpEndpoint`
 
 ### ไม่บังคับ
 - [ ] รูปเดี่ยวเจ้าบ่าว / เจ้าสาว (section แนะนำตัวแยก)
