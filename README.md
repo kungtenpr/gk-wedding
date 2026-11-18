@@ -52,7 +52,7 @@ Open http://localhost:5173
 - [ ] **ชื่อภาษาอังกฤษบ่าวสาว** — ตอนนี้ `Worawee & Pawornrut` (เดา)
 - [ ] **ของขวัญ**: QR PromptPay + ชื่อบัญชี + เลขพร้อมเพย์/เลขบัญชี
 - [ ] **วันปิดรับ RSVP** — ตอนนี้ 20 ก.พ. 2570 (ชั่วคราว)
-- [ ] **RSVP endpoint**: Claude เขียน Apps Script ให้ → เจ้าของ deploy → ใส่ URL ใน `CONFIG.rsvpEndpoint`
+- [ ] **RSVP endpoint**: Apps Script เขียนแล้ว (`apps-script/`) → เจ้าของ deploy ตาม `apps-script/README.md` → ส่ง URL `/exec` มาใส่ใน `CONFIG.rsvpEndpoint`
 
 ### ไม่บังคับ
 - [ ] รูปเดี่ยวเจ้าบ่าว / เจ้าสาว (section แนะนำตัวแยก)
@@ -100,5 +100,5 @@ Google Sheet "GK Wedding RSVP"
 
 - GitHub Pages is static-only, so the Apps Script Web App is the receiver. Free, data stays in the owner's account.
 - The site posts with `mode: 'no-cors'`, so it cannot read the response; a failed request still shows the thank-you message.
-- Setup (one time): create the Sheet → Extensions → Apps Script → paste script → Deploy as Web App (execute as me, access: anyone) → put the URL in `CONFIG.rsvpEndpoint` in `script.js`.
-- Optional: email notification on each new reply; summary formulas (guests per side, total attending).
+- Script: [`apps-script/Code.gs`](apps-script/Code.gs) (tested against a mocked Sheets API). Click-by-click setup in Thai: [`apps-script/README.md`](apps-script/README.md) → owner deploys, sends the `/exec` URL → put it in `CONFIG.rsvpEndpoint` in `script.js`.
+- `setup()` also builds a สรุป tab (replies / guests per side). Email alerts: Sheets' own Tools → Notification settings, no extra script permission.
