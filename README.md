@@ -46,6 +46,7 @@ Open http://localhost:5173
 - [x] Responsive มือถือ + คอม
 - [x] รูปหน้าแรก `images/hero.jpg` (kungten46) · รูปคั่นเต็มจอ `images/band.jpg` (kungten269)
 - [x] Monogram G & K และตราปิดซอง ดึง vector จาก PDF (`images/deco/monogram.svg`, `monogram-white.svg`)
+- [x] รูปพรีวิวตอนแชร์ลิงก์ `images/og-image.jpg` 1200×630 (ครึ่งซ้ายจากการ์ด PDF + รูปหน้าแรก) · og tags ใช้ URL เต็ม
 - [x] ไอคอนเว็บ = ตรา GK สีกรมท่า (`icon.svg`, `icon-32.png`, `apple-touch-icon.png` 180px; source `images/deco/icon-square.svg`)
 
 ### รอข้อมูล ⏳
@@ -57,7 +58,6 @@ Open http://localhost:5173
 ### ไม่บังคับ
 - [ ] รูปเดี่ยวเจ้าบ่าว / เจ้าสาว (section แนะนำตัวแยก)
 - [ ] ข้อมูลที่จอดรถ / ทางเข้า / เบอร์ผู้ประสานงาน
-- [ ] รูปพรีวิวตอนแชร์ลิงก์ใน LINE (ตอนนี้ใช้ `hero.jpg`)
 
 ### ขึ้นจริง
 - [x] Deploy GitHub Pages — https://kungtenpr.github.io/gk-wedding/ (repo `kungtenpr/gk-wedding`, public, Pages from `main` /)
